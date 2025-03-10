@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 import requests
 
-API_KEY = "a78bfa54a093b2b962f5629f2a2cfed1"
+API_KEY = "3ac2f114561e233fb5aa9373da8981d4"
 API_URL = f"https://v6.exchangeratesapi.io/latest?access_key={API_KEY}"
 
 def get_exchange_rates():
