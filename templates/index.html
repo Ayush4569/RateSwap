@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Currency Converter{% endblock %}
+
+{% block extra_head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="layout-wrapper">
+    <div class="container glass">
+        <h1 class="animate-slide">Currency Converter</h1>
+        <div class="converter-card">
+            <form action="/convert" style="padding: 1rem;" method="post">
+                <div class="amount-input">
+                    <input type="number" name="amount" placeholder="Amount" required>
+                    <div class="glow"></div>
+                </div>
+                
+                <div class="currency-selects">
+                    <div class="select-container">
+                        <select name="from_currency" required>
+                            <option value="INR" selected>INR - {{ currency_names['INR'] }}</option>
+                            {% for currency in rates.keys() %}
+                                {% if currency != 'INR' %}
+                                <option value="{{ currency }}">{{ currency }} - {{ currency_names[currency] }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <div class="swap-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    
+                    <div class="select-container">
+                        <select name="to_currency" required>
+                            {% for currency in rates.keys() %}
+                            <option value="{{ currency }}">{{ currency }} - {{ currency_names[currency] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                
+                <button type="submit" class="convert-btn">
+                    <span>Convert</span>
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="vertical-tab glass">
+        <div class="tab-header">
+            <h3>Live Rates (INR)</h3>
+            <div class="currency-tabs">
+                <button class="tab-btn active" data-currency="USD">USD</button>
+                <button class="tab-btn" data-currency="EUR">EUR</button>
+            </div>
+        </div>
+        <div class="graph-container">
+            <canvas id="rateChart"></canvas>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Live Rates{% endblock %}
+
+{% block content %}
+<div class="container glass">
+    <h1 class="animate-slide">Live Currency Rates</h1>
+    <div class="rates-grid">
+        {% for currency, rate in rates.items() %}
+        <div class="rate-card animate-fade-in">
+            <h3>{{ currency_names[currency] }}</h3>
+            <p class="rate-value">{{ rate }}</p>
+            <small>1 INR = {{ rate }} {{ currency }}</small>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

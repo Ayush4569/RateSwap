@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{% block title %}Currency Converter{% endblock %}</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="light-theme">
+    <nav class="navbar glass">
+        <div class="nav-brand">
+            <i class="fas fa-coins"></i>
+            <span>Currency Converter</span>
+        </div>
+        <div class="nav-links">
+            <a href="/" class="nav-link {% if active_page == 'home' %}active{% endif %}">
+                <i class="fas fa-home"></i> Home
+            </a>
+            <a href="/rates" class="nav-link {% if active_page == 'rates' %}active{% endif %}">
+                <i class="fas fa-chart-line"></i> Rates
+            </a>
+            <a href="/about" class="nav-link {% if active_page == 'about' %}active{% endif %}">
+                <i class="fas fa-users"></i> About
+            </a>
+        </div>
+        <div class="theme-toggle">
+            <input type="checkbox" id="theme-switch" hidden>
+            <label for="theme-switch" class="switch">
+                <i class="fas fa-moon moon-icon"></i>
+                <i class="fas fa-sun sun-icon"></i>
+            </label>
+        </div>
+    </nav>
+    
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+    
+    {% block scripts %}{% endblock %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for category, message in messages %}
+                <div class="flash-message {{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+    <script src="/static/script.js"></script>
+</body>
+</html>

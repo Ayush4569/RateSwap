@@ -1,0 +1,20 @@
+{% extends "base.html" %} {% block title %}Signup{% endblock %} {% block content
+%}
+<div class="container glass">
+  <h1>Signup</h1>
+  <form method="post">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" required />
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required />
+    </div>
+    <button type="submit" class="convert-btn">Signup</button>
+  </form>
+  <p>
+    Already have an account? <a href="{{ url_for('login') }}">Login here</a>.
+  </p>
+</div>
+{% endblock %}
